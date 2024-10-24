@@ -39,7 +39,10 @@ const adventurer = {
             console.log(`${this.name} rolled a ${result}.`)
             }
       }
+
+
     // Below is commented out so I could redeclare the classes in Part 3
+
     //   const robin = new Character("Robin");
     //   robin.inventory = ["sword", "potion", "artifact"];
     //   robin.companion = new Character("Leo");
@@ -47,7 +50,6 @@ const adventurer = {
     //   robin.companion.companion = new Character("Frank");
     //   robin.companion.companion.type = "Flea";
     //   robin.companion.companion.inventory = ["small hat", "sunglasses"];
-
     //  robin.roll() 
     //  robin.companion.roll()
     //  robin.companion.companion.roll()
@@ -118,12 +120,42 @@ class Companion extends Character {
     }
 }
 
-class Spirit extends Character {}
+class Spirit extends Character {
+    constructor (name, role) {
+        super(name);
+        this.role = role;
+        this.inventory.push("soul gem", "8 haunts");
+    }
+    scare () {
+        console.log(`${this.name} is scaring.....`);
+        super.roll();
+    }
+    inhabit () {
+        console.log(`${this.name} is inhabiting.....`);
+        super.roll();
+    }
+}
+
+  const robin = new Adventurer("Robin", "Healer");
+  robin.inventory = ["sword", "potion", "artifact"];
+  robin.companion = new Companion("Leo", "Rogue");
+  robin.companion.type = "Cat";
+  robin.companion.companion = new Companion("Frank", "Wizard");
+  robin.companion.companion.type = "Flea";
+  robin.companion.companion.inventory = ["small hat", "sunglasses"];
+  const hope = new Adventurer("Hope", "Mediator");
+  robin.roll() 
+  robin.companion.roll()
+  robin.companion.companion.sneak();  
+  const biff = new Adventurer("Biff", "Fighter");
+  hope.duel(robin)  
+  robin.duel(biff)
+  const casper = new Spirit("Casper", "Rogue")
+  console.log(casper)
 
 
 
-
-// I did not use this part
+  // I did not use this part
 
 // class AdventurerFactory {  
 //     constructor (role) {
@@ -141,24 +173,3 @@ class Spirit extends Character {}
 //       return this.adventurers.find((a) => a.name === name);
 //     }
 //   }
-
-  const robin = new Adventurer("Robin", "Healer");
-  robin.inventory = ["sword", "potion", "artifact"];
-  robin.companion = new Companion("Leo", "Rogue");
-  robin.companion.type = "Cat";
-  robin.companion.companion = new Companion("Frank", "Wizard");
-  robin.companion.companion.type = "Flea";
-  robin.companion.companion.inventory = ["small hat", "sunglasses"];
-  const hope = new Adventurer("Hope", "Mediator");
-  robin.roll() 
-  robin.companion.roll()
-  robin.companion.companion.sneak();
-    
-  
-  
-  const biff = new Adventurer("Biff", "Fighter");
-  
-  
-  
-  hope.duel(robin)  
-  robin.duel(biff)
